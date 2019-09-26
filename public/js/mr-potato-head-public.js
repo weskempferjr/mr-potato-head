@@ -11,6 +11,8 @@
 	var pgbdContainerSelector = '';
 	var noMorePosts = false;
 
+	var expirationTimers = {};
+
 
 	var spinnerOptions = {
 		lines: 9 // The number of lines to draw
@@ -57,11 +59,53 @@
 			displayPosts();
 		}
 
+		displayExpirationTimers();
+
 
 	});
 
 
+	function displayExpirationTimers() {
 
+		$('.mph-expiration-container').each( function(index, elem ){
+
+
+			var postNumber = $( elem ).data('post');
+			// var expire = elem.dataset.expire;  // Who the f___  knows why the jQuery call returns undefined?
+			var expire = $( elem ).data('expire');
+
+			// var expireTime = new Date( expire * 1000 );
+			expire *= 1000;
+
+
+
+			expirationTimers [ postNumber ] = setInterval(function( ) {
+
+				// Get today's date and time
+				var now = new Date().getTime();
+
+				// Find the distance between now and the count down date
+				var distance = expire - now;
+
+				// Time calculations for days, hours, minutes and seconds
+				var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+				var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+				var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+				var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+				var dateString = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+				$( elem ).empty ();
+				$( elem ).prepend( dateString );
+
+				// If the count down is finished, write some text
+				if (distance < 0) {
+					clearInterval( expirationTimers[ postNumber ] );
+					$(this).prepend( "Expired" );
+				}
+			}, 1000);
+		});
+
+	}
 
 
 	function displayPosts() {
@@ -209,4 +253,4 @@
 
 	}
 
-})( $ );
+})( jQuery );

@@ -154,6 +154,9 @@ class Mr_Potato_Head {
 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-mr-potato-head-wc-add-to-cart-extender.php';
 
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-mph-post-expiration-manager.php';
+
+
 
 
 		$this->loader = new Mr_Potato_Head_Loader();
@@ -227,6 +230,9 @@ class Mr_Potato_Head {
 
 		$cart_extender = new Mr_Potato_Head_WC_Add_To_Cart_Extender();
 		$cart_extender->add_actions( $this->get_loader() );
+
+		$template_manager = new Mr_Potato_Head_Template_Manager() ;
+		$template_manager->add_filters(  $this->get_loader() );
 
 	}
 

@@ -71,4 +71,24 @@ class Mr_Potato_Head_Template_Manager {
 
 	}
 
+	public function alsp_expiration_content_filter( $template_path ) {
+
+
+		$filtered_template_path  = dirname( plugin_dir_path(__FILE__ ) ) . '/alsp/'  . str_replace('.tpl.php', '', $template_path ) . '-custom.tpl.php';
+
+		if ( is_file( $filtered_template_path )) {
+			$template_path =  str_replace( '-custom', '' , $filtered_template_path) ;
+		}
+
+		return $template_path;
+
+
+
+	}
+
+
+	public function add_filters( $loader ) {
+		$loader->add_filter('alsp_frontent_render', $this ,'alsp_expiration_content_filter');
+	}
+
 }
