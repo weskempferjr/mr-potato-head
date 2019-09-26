@@ -1174,7 +1174,8 @@ $id = uniqid();
 		?>
 		<?php }else{ ?>
 		<div class="single-listing alsp-content single-style-default">
-			<?php alsp_renderMessages(); ?>
+
+            <?php alsp_renderMessages(); ?>
 
 			<?php if ($public_control->listings): ?>
 			<?php while ($public_control->query->have_posts()): ?>
@@ -1186,12 +1187,13 @@ $id = uniqid();
 					$GLOBALS['authorID2'] = $authorID;
 					$GLOBALS['listing_id_resurva'] = $listing->post->ID;
 				?>
-				
 
-				<div id="<?php echo $listing->post->post_name; ?>" itemscope itemtype="http://schema.org/LocalBusiness">
+
+
+                    <div id="<?php echo $listing->post->post_name; ?>" itemscope itemtype="http://schema.org/LocalBusiness">
 					<?php $js_data = "data-expiration=" . $listing->expiration_date ; ?>
 					<article id="post-<?php the_ID(); ?>" class="alsp-listing" <?php echo $js_data ; ?>>
-						<div class="listing-main-content clearfix">
+						<div class="listing-main-content clearfix mph-fix-pos-target">
 							<?php if ($listing->title()): ?>
 								<header class="alsp-listing-header clearfix">
 									<h2 itemprop="name"><?php echo $listing->title(); ?></h2>			
@@ -1232,7 +1234,27 @@ $id = uniqid();
 								</div>
 								<div class="clearfix"></div>
 							<?php endif; ?>
-						</div>	
+							<?php
+							$current_listing = $public_control->listings[get_the_ID()];
+							$js_data = ' data-post="' . get_the_ID() . '" ' . 'data-expire="' . $current_listing->expiration_date . '"' ;
+
+							?>
+                            <div class="listing-util-container">
+                                <div class="mph-bid-info-container mhp-listing-util-member">
+                                    <p class="mph-current-bid-amt-label mph-listing-util-label">Current Bid:</p>
+                                    <div id="current-bid-amt" class="mph-bid-amt-container">TODO</div>
+                                </div>
+                                <div class="mph-expiration-info-container mhp-listing-util-member">
+                                    <p class="mph-expiration-label mph-listing-util-label">Ends in:</p>
+                                    <div id="expiration-<?php the_ID(); ?>" class="mph-expiration-container" <?php echo $js_data ; ?>></div>
+                                </div>
+                                <div class="mph-listing-button-container mph-listing-util-member">
+                                    <button class="mph-listing-util-button">See FAQ</button>
+                                    <button class="mph-listing-util-button">Bid & Comment</button>
+                                </div>
+
+                            </div>
+						</div>
 						<?php if ($listing->logo_image && (!get_option('alsp_exclude_logo_from_listing') || count($listing->images) > 1)): ?>
 							<div class="alsp-listing-logo-wrap alsp-single-listing-logo-wrap" id="images">
 								<div class="price">

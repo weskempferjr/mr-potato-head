@@ -60,9 +60,37 @@
 		}
 
 		displayExpirationTimers();
-
+		handleFixedPositionTargets();
 
 	});
+
+
+	function handleFixedPositionTargets() {
+
+		var elem = $('.mph-fix-pos-target');
+		var classToAdd = 'mph-pos-fixed-top';
+
+		// var w = $( elem ).width();
+		// $( elem ).css( "width", w );
+
+
+		$(window).scroll(function() {
+
+
+			if ($(document).scrollTop() > 150) {
+
+				if( typeof handleFixedPositionTargets.widthSet == 'undefined' ) {
+					var w = $( elem ).parent().width();
+					$( elem ).css( "width", w );
+					handleFixedPositionTargets.widthSet = true;
+				}
+
+				$( elem ).addClass( classToAdd );
+			} else {
+				$ ( elem ).removeClass( classToAdd );
+			}
+		});
+	}
 
 
 	function displayExpirationTimers() {
