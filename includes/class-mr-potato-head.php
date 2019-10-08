@@ -237,6 +237,9 @@ class Mr_Potato_Head {
 		$template_manager = new Mr_Potato_Head_Template_Manager() ;
 		$template_manager->add_filters(  $this->get_loader() );
 
+		$expiration_manager = new MPH_Post_Expiration_Manager();
+		$expiration_manager->add_actions( $this->get_loader() );
+
 	}
 
 	/**

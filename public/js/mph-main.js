@@ -315,7 +315,8 @@
 
                 // If the count down is finished, display time ended.
                 if (distance <= 0) {
-                    clearInterval(timerDictionary.get(postNumber));
+                    // var interval = timerDictionary.get(postNumber);
+                    clearInterval( auctionTimer );
 
                     // TODO: Hardcoded string. Pass with localization globals.
                     $( elem ).empty();
@@ -323,7 +324,7 @@
                 }
 
             }, 1000);
-            
+
             timerDictionary.set( postNumber, auctionTimer );
 
 
