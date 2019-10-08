@@ -156,6 +156,9 @@ class Mr_Potato_Head {
 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-mph-post-expiration-manager.php';
 
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-mr-potato-head-ALSP-listing-manager.php';
+
+
 
 
 
@@ -222,8 +225,8 @@ class Mr_Potato_Head {
 			$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'localize_scripts');
 
 
-			$this->loader->add_action('wp_ajax_nopriv_mph_ajax' , $ajax_controller, 'mr_potato_head_ajax');
-			$this->loader->add_action('wp_ajax_mph_ajax' , $ajax_controller, 'mr_potato_head_ajax');
+			$this->loader->add_action('wp_ajax_nopriv_mph_ajax' , $ajax_controller, 'mph_ajax');
+			$this->loader->add_action('wp_ajax_mph_ajax' , $ajax_controller, 'mph_ajax');
 
 
 		}

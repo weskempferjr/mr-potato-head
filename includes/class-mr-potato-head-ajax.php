@@ -51,6 +51,18 @@ class Mr_Potato_Head_Ajax_Controller {
 					}
 					break;
 
+				case 'get_auction_data':
+					// If  not set, consider it an invalid request.
+					if ( !isset( $_REQUEST['auctions']) || $_REQUEST['auctions'] == 'undefined' ) {
+						throw new Exception(__('Invalid get auction data request. Necessary parameters are not defined.', PGDB_TEXTDOMAIN ) );
+					}
+
+					$output = self::get_auction_data( $_REQUEST['auctions'] );
+					if ( $output === false ) {
+						throw new Exception(__('Could not get get posts as requested.', PGDB_TEXTDOMAIN ) );
+					}
+					break;
+
 			
 				default:
 					$output = __('Unknown ajax request sent from client.', PGDB_TEXTDOMAIN );
@@ -80,7 +92,6 @@ class Mr_Potato_Head_Ajax_Controller {
 	}
 
 
-
 	private static function get_posts( $count, $current_offset ) {
 
 		$count = intval(( $_REQUEST['count']));
@@ -89,9 +100,24 @@ class Mr_Potato_Head_Ajax_Controller {
 		return Post_Post_Type::get_posts( $count, $current_offset );
 	}
 
+	// TODO: add sanitize
+	private static function get_auction_data( $auctions ) {
+
+		$ids = array();
+
+		foreach ( $auctions as $auction ) {
+			$ids[] = $auction['id'];
+		}
+
+		if ( count( $ids) > 0 ) {
+			$listingManager = new Mr_Potato_Head_ALSP_Listing_Manager();
+			return $listingManager->get_listings_by_ids( $ids );
+		}
+	}
 
 
-	public function mr_potato_head_ajax() {
+
+	public function mph_ajax() {
 		self::execute_request();
 	}
 

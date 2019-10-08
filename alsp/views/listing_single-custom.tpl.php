@@ -1242,7 +1242,7 @@ $id = uniqid();
                             <div class="listing-util-container">
                                 <div class="mph-bid-info-container mhp-listing-util-member">
                                     <p class="mph-current-bid-amt-label mph-listing-util-label">Current Bid:</p>
-                                    <div id="current-bid-amt" class="mph-bid-amt-container">TODO</div>
+                                    <div id="current-bid-amt-<?php the_ID() ?>" class="mph-bid-amt-container">TODO</div>
                                 </div>
                                 <div class="mph-expiration-info-container mhp-listing-util-member">
                                     <p class="mph-expiration-label mph-listing-util-label">Ends in:</p>

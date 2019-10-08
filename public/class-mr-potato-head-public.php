@@ -98,7 +98,9 @@ class Mr_Potato_Head_Public {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/mr-potato-head-public.js', array( 'jquery' ), $this->version, false );
+		$buckets_handle = $this->plugin_name . '-buckets';
+		wp_enqueue_script( $buckets_handle, plugin_dir_url( __FILE__ ) . 'js/buckets.js', array(), $this->version, false );
+		wp_enqueue_script( $this->public_js_handle, plugin_dir_url( __FILE__ ) . 'js/mr-potato-head-public.js', array( 'jquery', $buckets_handle), $this->version, false );
 
 	}
 	/**
@@ -109,7 +111,7 @@ class Mr_Potato_Head_Public {
 
 		$wp_js_info = array('site_url' => __(site_url()));
 
-		wp_localize_script( $this->public_js_handle , 'objectl10n', array(
+		wp_localize_script( $this->public_js_handle, 'objectl10n', array(
 			'wpsiteinfo' => $wp_js_info,
 			'sliderOn' => false,
 			'get_posts_error' => __('Error retrieving posts.',  MPH_TEXTDOMAIN ),
