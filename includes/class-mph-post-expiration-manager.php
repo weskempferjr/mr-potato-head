@@ -38,9 +38,11 @@ class MPH_Post_Expiration_Manager {
 			$time_remaining = $expiration_date - time();
 
 			// TODO: make threshold an option.
+			$options = get_option( TNOTW_MPH_OPTIONS_NAME );
+			$resetable_timer_threshold = $options['mph_resetable_timer_threshold'];
 
-			if ( $time_remaining < 180 ) {
-				$expiration_date += 180 - $time_remaining ;
+			if ( $time_remaining < $resetable_timer_threshold ) {
+				$expiration_date += $resetable_timer_threshold - $time_remaining ;
 				update_post_meta( $message['message_post_id'], '_expiration_date', $expiration_date );
 			}
 
