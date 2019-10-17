@@ -1236,13 +1236,18 @@ $id = uniqid();
 							<?php endif; ?>
 							<?php
 							$current_listing = $public_control->listings[get_the_ID()];
-							$js_data = ' data-post="' . get_the_ID() . '" ' . 'data-expire="' . $current_listing->expiration_date . '"' ;
+
+							$bids = get_post_meta( get_the_ID(), '_listing_bidpost', false);
+							$max_bid = max( $bids );
+							$max_bid_str = __('$', MPH_TEXTDOMAIN) . $max_bid ;
+							$js_data = ' data-post="' . get_the_ID() . '" ' . 'data-expire="' . $current_listing->expiration_date . '" ' .  'data-bid="' . $max_bid . '"' ;
+
 
 							?>
                             <div class="listing-util-container">
                                 <div class="mph-bid-info-container mhp-listing-util-member">
                                     <p class="mph-current-bid-amt-label mph-listing-util-label">Current Bid:</p>
-                                    <div id="current-bid-amt-<?php the_ID() ?>" class="mph-bid-amt-container">TODO</div>
+                                    <div id="current-bid-amt-<?php the_ID() ?>" class="mph-bid-amt-container"><?php echo $max_bid_str ;?></div>
                                 </div>
                                 <div class="mph-expiration-info-container mhp-listing-util-member">
                                     <p class="mph-expiration-label mph-listing-util-label">Ends in:</p>

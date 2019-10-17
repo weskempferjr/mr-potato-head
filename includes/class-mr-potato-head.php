@@ -158,7 +158,14 @@ class Mr_Potato_Head {
 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-mr-potato-head-ALSP-listing-manager.php';
 
+		/**
+		 * Class file for admin/settings page
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-mr-potato-head-settings.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-mr-potato-head-menu-pages.php';
 
+
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-mr-potato-head-testing-manager.php';
 
 
 
@@ -196,6 +203,18 @@ class Mr_Potato_Head {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+
+		$mph_settings = new Mr_Potato_Head_Settings();
+		$mph_menu_pages = new Mr_Potato_Head_Menu_Pages();
+
+		if ( is_admin() ) {
+			$this->loader->add_action( 'admin_menu', $mph_settings, 'add_mph_options_page' );
+			$this->loader->add_action( 'admin_init', $mph_settings, 'settings_init' );
+			$this->loader->add_action( 'admin_menu', $mph_menu_pages, 'admin_menu_pages' );
+
+		}
+
+		$this->loader->add_action('plugin_action_links_' . TNTOW_MPH_PLUGIN_FILE, $mph_settings, 'action_links');
 
 	}
 

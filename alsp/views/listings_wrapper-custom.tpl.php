@@ -165,14 +165,27 @@
 									<?php endif; // slick listing box div ?>
                                             <?php
                                                 $current_listing = $public_control->listings[get_the_ID()];
-                                                $js_data = ' data-post="' . get_the_ID() . '" ' . 'data-expire="' . $current_listing->expiration_date . '"' ;
+									            $bids = get_post_meta( get_the_ID(), '_listing_bidpost', false);
+									            $max_bid = max( $bids );
+                                                $js_data = ' data-post="' . get_the_ID() . '" ' . 'data-expire="' . $current_listing->expiration_date . '" ' . 'data-bid="' . $max_bid . '"';
 
 									        ?>
 											<article id="post-<?php the_ID(); ?>"  <?php echo $js_data ; ?> class="article-mph <?php if ($public_control->args['scroll'] == 1){ echo 'listing-scroll'; } ?> row alsp-listing <?php  echo $alsp_responsive_col.' '.$masonry_classes; ?> listing-post-style-<?php if ($listing_style_to_show == 'show_grid_style'){ echo $public_control->args['listing_post_style']; }else{ echo $ALSP_ADIMN_SETTINGS['alsp_listing_listview_post_style']; } ?> <?php if ($public_control->listings[get_the_ID()]->level->featured) { echo 'alsp-featured';} ?> <?php if ($public_control->listings[get_the_ID()]->level->sticky) echo 'alsp-sticky'; ?> clearfix" <?php if ($listing_style_to_show == 'show_grid_style'){ ?> style="padding-left:<?php echo $grid_padding; ?>px; padding-right: <?php echo $grid_padding; ?>px; margin-bottom: <?php echo $alsp_grid_margin_bottom; ?>px;" <?php } ?>>
 												<div class="listing-wrapper clearfix">
 													<?php $public_control->listings[get_the_ID()]->display($public_control); ?>
+                                                    <div class="listing-meta-container">
+                                                        <div class="listing-bid-meta listing-meta-member">
+                                                            <div class="bid-label listing-meta-label">Bid:</div>
+                                                            <div id="current-bid-amt-<?php the_ID(); ?>"></div>
+                                                        </div>
+                                                        <div class="listing-expire-meta listing-meta-member">
+                                                            <div class="expiration-label listing-meta-label">Ends in:</div>
+                                                            <div id="expiration-<?php the_ID(); ?>" class="mph-expiration-container" <?php echo $js_data ; ?>></div>
+                                                        </div>
+                                                    </div>
 												</div>
-                                                <div id="expiration-<?php the_ID(); ?>" class="mph-expiration-container" <?php echo $js_data ; ?>></div>
+
+
 											</article>
 									<?php if($public_control->args['scroll']): ?>
 										</div>

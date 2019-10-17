@@ -18,11 +18,11 @@
     var noMorePosts = false;
 
 
-    // TODO: make theses plugin options
-    var resetableTimerThreshold = 240000 ;// 4 minutes
-    var updatePostDataInterval = 30000 ; // 30 seconds
+
+    var resetableTimerThreshold = parseInt( objectl10n.resetable_timer_threshold) * 1000 ;
+    var updatePostDataInterval = parseInt( objectl10n.retrieve_post_data_interval ) * 1000 ;
     var bidSoonToCloseThreshold = resetableTimerThreshold + updatePostDataInterval ;
-    var closingUpdatePostDataInterval = 5000 ; // 5 seconds
+    var closingUpdatePostDataInterval = parseInt( objectl10n.retrieve_post_data_interval_closing ) * 1000 ;
 
 
     var spinnerOptions = {
@@ -112,11 +112,12 @@
 
             var postNumber = $( elem ).data('post');
             var expire = $( elem ).data('expire');
+            var bid = $( elem ).data('bid');
 
             postDataDictionary.set( postNumber, {
                 'id' : postNumber,
                 'expire' : expire,
-                'bid' : ''
+                'bid' : bid
             });
 
 
@@ -310,7 +311,7 @@
 
 
                 $(elem).empty();
-                $(elem).prepend(dateString);
+                $(elem).prepend( dateString) ;
 
 
                 // If the count down is finished, display time ended.

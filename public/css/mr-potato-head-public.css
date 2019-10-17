@@ -50,4 +50,26 @@
   margin-right: 5px;
 }
 
+.listing-meta-container {
+  display: flex;
+  padding-left: 32px;
+}
+
+.listing-box .listing-meta-container {
+  padding-left: 16px;
+}
+
+.listing-meta-member {
+  display: flex;
+}
+
+.listing-expire-meta {
+  margin-left: 20px;
+}
+
+.listing-meta-label {
+  margin-right: 5px;
+  font-weight: bold !important;
+}
+
 /*# sourceMappingURL=mr-potato-head-public.css.map */

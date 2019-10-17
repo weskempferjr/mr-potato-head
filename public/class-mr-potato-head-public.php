@@ -111,6 +111,8 @@ class Mr_Potato_Head_Public {
 
 		$wp_js_info = array('site_url' => __(site_url()));
 
+		$options = get_option( TNOTW_MPH_OPTIONS_NAME);
+
 		wp_localize_script( $this->public_js_handle, 'objectl10n', array(
 			'wpsiteinfo' => $wp_js_info,
 			'sliderOn' => false,
@@ -121,7 +123,11 @@ class Mr_Potato_Head_Public {
 			'content_template' => Mr_Potato_Head_Template_Manager::get_content_template(),
 			'is_user_logged_in' => is_user_logged_in(),
 			'mobile_breakpoint' => 667,
-			'display_mobile_format' => true
+			'display_mobile_format' => true,
+			'resetable_timer_threshold' => $options['mph_resetable_timer_threshold'],
+			'retrieve_post_data_interval' => $options['mph_retrieve_post_data_interval'],
+			'retrieve_post_data_interval_closing' => $options['mph_retrieve_post_data_interval_closing'],
+
 		));
 	}
 }

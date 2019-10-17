@@ -36,7 +36,13 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'MR_POTATO_HEAD_VERSION', '1.0.0' );
+define( 'MR_POTATO_HEAD_VERSION', '1.0.1' );
+
+if (!defined('TNOTW_MPH_PLUGIN_FILE'))
+	define('TNTOW_MPH_PLUGIN_FILE', plugin_basename(__FILE__) );
+
+if (!defined('TNOTW_MPH_OPTIONS_NAME'))
+	define('TNOTW_MPH_OPTIONS_NAME', 'tnotw_mph_settings');
 
 
 if (!defined('MPH_TEXTDOMAIN'))

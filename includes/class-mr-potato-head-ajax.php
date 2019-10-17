@@ -63,6 +63,26 @@ class Mr_Potato_Head_Ajax_Controller {
 					}
 					break;
 
+
+				case 'test_closing' :
+
+					if ( !isset( $_REQUEST['listing_post_id']) || $_REQUEST['listing_post_id'] == 'undefined' ) {
+						throw new Exception(__('Invalid test closing request. Necessary parameters are not defined.', PGDB_TEXTDOMAIN ) );
+
+					}
+
+					$output = self::test_closing( $_REQUEST['listing_post_id'] );
+					break;
+
+				case 'restore_expiration' :
+
+					if ( !isset( $_REQUEST['listing_post_id']) || $_REQUEST['listing_post_id'] == 'undefined' ) {
+						throw new Exception(__('Invalid restore expiration request. Necessary parameters are not defined.', PGDB_TEXTDOMAIN ) );
+					}
+
+					$output = self::restore_expiration( $_REQUEST['listing_post_id'] );
+					break;
+
 			
 				default:
 					$output = __('Unknown ajax request sent from client.', PGDB_TEXTDOMAIN );
@@ -113,6 +133,38 @@ class Mr_Potato_Head_Ajax_Controller {
 			$listingManager = new Mr_Potato_Head_ALSP_Listing_Manager();
 			return $listingManager->get_listings_by_ids( $ids );
 		}
+	}
+
+	private static function test_closing( $post_id ) {
+
+		$closing_post_id = sanitize_text_field( $post_id );
+		$testing_mgr = new Mr_Potato_Head_Testing_Manager();
+
+		$retval =  $testing_mgr->test_closing( $closing_post_id );
+
+		if ( ! $retval ) {
+			return sprintf( __('Could not set expiration time for post %s. Check post ID', MPH_TEXTDOMAIN), $closing_post_id );
+		}
+
+		return sprintf( __( 'Post %s expiration time set to %d to test auction close.', MPH_TEXTDOMAIN ), $closing_post_id, $retval );
+
+
+	}
+
+	private static function restore_expiration( $post_id ) {
+
+		$closing_post_id = sanitize_text_field( $post_id );
+		$testing_mgr = new Mr_Potato_Head_Testing_Manager();
+
+		$retval =  $testing_mgr->restore_expiration( $closing_post_id );
+
+		if ( ! $retval ) {
+			return sprintf( __('Could not restore expiration time for post %s. Check post ID', MPH_TEXTDOMAIN), $closing_post_id );
+		}
+
+		return sprintf( __( 'Post %s expiration time set to %d.', MPH_TEXTDOMAIN ), $closing_post_id, $retval );
+
+
 	}
 
 
