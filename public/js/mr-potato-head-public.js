@@ -278,7 +278,7 @@ require=(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c=
 
                 // update current highest bid
 
-                var bidAmountElem = '#current-bid-amt-' + postData.id;
+                var bidAmountElem = '.current-bid-amt-' + postData.id;
                 $(bidAmountElem).empty();
 
                 // TODO: Currency hardcoded
@@ -351,7 +351,7 @@ require=(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c=
 
         // update current highest bid
 
-        var bidAmountElem = '#current-bid-amt-' + postData.id;
+        var bidAmountElem = '.current-bid-amt-' + postData.id;
         $(bidAmountElem).empty();
 
         // TODO: Currency hardcoded

@@ -176,7 +176,7 @@
                                                     <div class="listing-meta-container">
                                                         <div class="listing-bid-meta listing-meta-member">
                                                             <div class="bid-label listing-meta-label">Bid:</div>
-                                                            <div id="current-bid-amt-<?php the_ID(); ?>"></div>
+                                                            <div id="current-bid-amt-<?php the_ID(); ?>" class="current-bid-amt-<?php the_ID(); ?>"></div>
                                                         </div>
                                                         <div class="listing-expire-meta listing-meta-member">
                                                             <div class="expiration-label listing-meta-label">Ends in:</div>

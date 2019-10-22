@@ -272,7 +272,7 @@
 
                 // update current highest bid
 
-                var bidAmountElem = '#current-bid-amt-' + postData.id;
+                var bidAmountElem = '.current-bid-amt-' + postData.id;
                 $(bidAmountElem).empty();
 
                 // TODO: Currency hardcoded
@@ -345,7 +345,7 @@
 
         // update current highest bid
 
-        var bidAmountElem = '#current-bid-amt-' + postData.id;
+        var bidAmountElem = '.current-bid-amt-' + postData.id;
         $(bidAmountElem).empty();
 
         // TODO: Currency hardcoded
