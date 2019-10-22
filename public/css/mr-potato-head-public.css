@@ -72,6 +72,48 @@
   font-weight: bold !important;
 }
 
-/* comment */
+/* Use absolute positioning to place bid and expiration date over listing */
+.listing-post-style-footer_widget,
+.listing-post-style-12,
+.listing-post-style-13 {
+  position: relative;
+}
+
+.listing-post-style-12 .listing-meta-container {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  color: white;
+  font-size: 1em;
+  width: 100%;
+  background: #0000004a;
+  padding: 10px 20px;
+}
+
+.listing-post-style-13 .listing-meta-container {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  color: white;
+  font-size: 1.3em;
+  width: 100%;
+  background: #0000004a;
+  padding: 10px 20px;
+}
+
+.listing-post-style-footer_widget .listing-meta-container {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  color: white;
+  font-size: 0.8em;
+  width: 100%;
+  background: #0000004a;
+  padding: 0;
+  flex-flow: column;
+}
+.listing-post-style-footer_widget .listing-meta-container .listing-expire-meta {
+  margin-left: 0px;
+}
 
 /*# sourceMappingURL=mr-potato-head-public.css.map */
