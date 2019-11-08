@@ -9,7 +9,7 @@
 class MPH_Post_Expiration_Manager {
 
 	public function expiration_content_filter( $template_path ) {
-		
+
 		$filtered_template_path  = dirname( plugin_dir_path(__FILE__ ) ) . '/alsp/'  . str_replace('.tpl.php', '', $template_path ) . '-custom.tpl.php';
 
 		if ( is_file( $filtered_template_path )) {

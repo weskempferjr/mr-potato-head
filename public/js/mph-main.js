@@ -75,8 +75,16 @@
         displayAuctionInfo();
 
         handleFixedPositionTargets();
+        spellingGrammerCorrections();
 
     });
+
+    
+    function spellingGrammerCorrections() {
+        // TODO: Hardcoded string
+        $('.classiadspro-author .author-content .author-link a').text('View All Listings');
+
+    }
 
 
     function handleFixedPositionTargets() {

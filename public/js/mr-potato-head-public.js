@@ -81,8 +81,16 @@ require=(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c=
         displayAuctionInfo();
 
         handleFixedPositionTargets();
+        spellingGrammerCorrections();
 
     });
+
+    
+    function spellingGrammerCorrections() {
+        // TODO: Hardcoded string
+        $('.classiadspro-author .author-content .author-link a').text('View All Listings');
+
+    }
 
 
     function handleFixedPositionTargets() {
